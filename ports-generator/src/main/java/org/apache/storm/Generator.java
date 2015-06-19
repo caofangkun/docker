@@ -40,7 +40,7 @@ public class Generator {
 			printUsage();
 		}
 		String stormYaml = args[0];
-//		stormYaml = "/home/kuncao/workspace/storm-core-java/conf/storm.yaml";
+		// stormYaml = "/home/kuncao/workspace/storm-core-java/conf/storm.yaml";
 		System.out.println("get storm.yaml in: " + stormYaml);
 		File configFile = new File(stormYaml);
 		InputStream inputStream = null;
@@ -93,8 +93,8 @@ public class Generator {
 			ObjectMapper jsonMapper = new ObjectMapper();
 
 			Map<String, List<HostToPort>> tmp;
-			Map<Integer, Integer> virtualToRealPorts = new HashMap<Integer,Integer>();
-			Map<Integer, Integer> realToVirtualPorts = new HashMap<Integer,Integer>();
+			Map<Integer, Integer> virtualToRealPorts = new HashMap<Integer, Integer>();
+			Map<Integer, Integer> realToVirtualPorts = new HashMap<Integer, Integer>();
 
 			try {
 				tmp = jsonMapper.readValue(json.toLowerCase(),
@@ -110,10 +110,12 @@ public class Generator {
 						realToVirtualPorts.put(realPort, virualPort);
 					}
 				}
-				formatterConfig.put("storm.virtual.real.ports", virtualToRealPorts);
+				formatterConfig.put("storm.virtual.real.ports",
+						virtualToRealPorts);
 				System.out.println("set storm.virtual.real.ports: "
 						+ virtualToRealPorts.toString());
-				formatterConfig.put("storm.real.virtual.ports", realToVirtualPorts);
+				formatterConfig.put("storm.real.virtual.ports",
+						realToVirtualPorts);
 				System.out.println("set storm.virtual.real.ports: "
 						+ realToVirtualPorts.toString());
 
@@ -141,7 +143,8 @@ public class Generator {
 
 		String stormZookeeperPort = System.getenv("STORM_ZOOKEEPER_PORT");
 		if (stormZookeeperPort != null) {
-			formatterConfig.put("storm.zookeeper.port", stormZookeeperPort);
+			formatterConfig.put("storm.zookeeper.port",
+					Integer.valueOf(stormZookeeperPort));
 			System.out.println("set storm.zookeeper.port: "
 					+ stormZookeeperPort);
 		} else {
