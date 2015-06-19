@@ -66,6 +66,11 @@ public class Generator {
 		if (gaiaHostIp != null) {
 			formatterConfig.put("storm.local.hostname", gaiaHostIp);
 			System.out.println("set storm.local.hostname: " + gaiaHostIp);
+			String prcType = System.getenv("PRC_TYPE");
+			if (prcType != null && prcType.equals("storm-nimbus")) {
+				formatterConfig.put("nimbus.host", gaiaHostIp);
+				System.out.println("set nimbus.host: " + gaiaHostIp);
+			}
 		}
 		// "{\"6700/tcp\":[{\"HostIP\":\"1.1.1.1.\", \"HostPort\":\"49252\"}],\"6701/tcp\":[{\"HostIP\":\"1.1.1.1.\", \"HostPort\":\"49254\"}]}";
 		// supervisor.slots.port
