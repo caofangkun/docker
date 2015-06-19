@@ -1,4 +1,4 @@
-package com.tencent;
+package org.apache.storm;
 
 public class HostToPort {
 	private String hostip;
